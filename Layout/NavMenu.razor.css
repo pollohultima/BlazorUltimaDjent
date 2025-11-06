@@ -1,0 +1,63 @@
+.navbar-toggler {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: black;
+}
+
+
+
+.navbar-brand {
+    display: flex;
+    align-content: center;
+    justify-content: start;
+}
+
+.bi {
+    display: inline-block;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    top: -1px;
+    background-size: cover;
+}
+
+.nav-item {
+    font-size: 0.9rem;
+}
+
+    .nav-item ::deep a {
+        color: #d7d7d7;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+    }
+
+.nav-item ::deep a.active {
+    font-weight: bolder;
+    color: white;
+}
+
+    .nav-item ::deep a:hover {
+        font-weight: bolder;
+        color: white;
+    }
+
+.link-wrapper, .custom-flex-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-pos{
+    top: 80px
+}
+
+@media (min-width: 768px) {
+    .collapse {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+}
