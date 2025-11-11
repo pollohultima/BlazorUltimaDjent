@@ -115,3 +115,8 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+footer{
+    position: sticky;
+    bottom: 0;
+}
