@@ -1,8 +1,28 @@
-<div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cardâ€™s content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+@using BlazorUltimaDjent.Models
+
+<div class="card bg-transparent border-0 col-4 col-lg-12 px-5" style="width: 18rem;">
+    <img src="@Data.ImageSource" class="card-img-top" alt="@Data.Title" />
+    <div class="card-body text-center">
+        <span class="card-title pe-3">@Data.Title</span>
+        <p class="card-text">@Data.Price €</p>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            @foreach (var item in collection)
+            {
+                <option value="@item[i]">One</option>
+                
+            }
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+        <button class="btn-primary rounded-3 p-2">
+            Buy somehow
+        </button>
     </div>
 </div>
+
+@code {
+    [Parameter, EditorRequired] 
+    public Product Data { get; set; }
+    
+}

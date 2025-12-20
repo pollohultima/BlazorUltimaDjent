@@ -1,12 +1,22 @@
 [
-  { 
-    "Title": "Card 1", 
-    "ImageSource": "/img/1.png", 
-    "Price": "Descrizione 1"
+  {
+    "Title": "Card 1",
+    "Description": "Descrizione 1",
+    "ImageSource": "/images/ULTIMA2025-2.jpg",
+    "Price": 20.00,
+    "Sizes": {
+      "M": 5,
+      "L": 5
+    }
   },
-  { 
-    "Title": "Card 2", 
-    "ImageSource": "/img/2.png", 
-    "Price": "Descrizione 2"
+  {
+    "Title": "Card 2",
+    "Description": "Descrizione 2",
+    "ImageSource": "/images/ULTIMA2025-2.jpg",
+    "Price": 22.00
+    "Sizes": {
+      "M": 5,
+      "L": 5
+    }
   }
 ]

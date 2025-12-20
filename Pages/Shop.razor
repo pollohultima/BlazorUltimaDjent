@@ -1,11 +1,45 @@
 ﻿@page "/shop"
+@using BlazorUltimaDjent.Components
+@using BlazorUltimaDjent.Models
+@using BlazorUltimaDjent.Services
+@inject HttpClient Http
+
+
 <PageTitle>Shop</PageTitle>
 
-<div class="container-fluid mt-5">
-	<div class="row justify-content-center px-4">
-		<div class="col-md-8 col text-center">
-			<h1 class="mb-3 fw-bolder">Shop</h1>
-			
-		</div>
-	</div>
+<div class="container my-5 text-center custom-height">
+    <h1 class="fw-bold mb-3">LABEL AS AN ULTIM8</h1>
+    @if (Products == null)
+    {
+        <p>Caricamento prodotti...</p>
+    }
+    else if (!Products.Any())
+    {
+        <p>Nessun prodotto disponibile.</p>
+    }
+    else
+    {
+        <div class="row justify-content-center">
+            @foreach (var product in Products)
+            {
+                <ProductCard Data="@product" />
+            }
+        </div>
+
+    }
 </div>
+
+@code {
+    private List<Product> Products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        ProductService _productService = new ProductService(Http);
+        Products = await _productService.GetProductsAsync();
+    }
+
+    private void AddToCart(Product p)
+    {
+        Console.WriteLine($"Aggiunto al carrello: {p.Title}");
+    }
+}
