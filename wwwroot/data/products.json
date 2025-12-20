@@ -13,7 +13,7 @@
     "Title": "Card 2",
     "Description": "Descrizione 2",
     "ImageSource": "/images/ULTIMA2025-2.jpg",
-    "Price": 22.00
+    "Price": 22.00,
     "Sizes": {
       "M": 5,
       "L": 5
