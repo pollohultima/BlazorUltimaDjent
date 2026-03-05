@@ -1,21 +1,21 @@
 ﻿using BlazorUltimaDjent.Models;
 using System.Net.Http.Json;
 
-namespace BlazorUltimaDjent.Services
+namespace BlazorUltimaDjent.Services;
+
+public class ProductService
 {
-    public class ProductService
+    private readonly HttpClient _http;
+
+    // Constructor injection — same as ASP.NET Core DI
+    public ProductService(HttpClient http)
     {
-        private readonly HttpClient _http;
+        _http = http;
+    }
 
-        public ProductService(HttpClient http)
-        {
-            _http = http;
-        }
-
-        public async Task<List<Product>> GetProductsAsync()
-        {
-            return await _http.GetFromJsonAsync<List<Product>>("data/products.json")
-                   ?? new List<Product>();
-        }
+    public async Task<List<Product>> GetProductsAsync()
+    {
+        return await _http.GetFromJsonAsync<List<Product>>("data/products.json")
+               ?? new List<Product>();
     }
 }

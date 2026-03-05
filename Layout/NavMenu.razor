@@ -1,51 +1,45 @@
-﻿<div class="navbar">
-	<div class="container-fluid">
-		<div class="col-3">
-			<a class="navbar-brand" href="#">
-				<img src="/images/UltimaWhite.png" alt="Logo" height="40" class="d-none d-md-block">
-				<img src="/images/LogoWhite.png" alt="Logo" height="50" class="d-md-none">
-			</a>
-		</div>
+﻿<nav class="site-nav">
+    <div class="nav-inner">
 
-		<div class="col col-md-4">
-			<div class="@NavMenuCssClass">
-				<div class="row flex-row justify-content-between align-items-center">
-					<div class="nav-item col-3">
-						<NavLink class="nav-link text-center" href="" Match="NavLinkMatch.All">
-							<span class="" aria-hidden="true">Home</span>
-						</NavLink>
-					</div>
-					<div class="nav-item col-3">
-						<NavLink class="nav-link" href="about">
-							<span class="" aria-hidden="true">About</span>
-						</NavLink>
-					</div>
-					<div class="nav-item col-3">
-						<NavLink class="nav-link" href="shop">
-							<span class="" aria-hidden="true">Shop</span>
-						</NavLink>
-					</div>
-				</div>
-			</div>
-		</div>
+        <a class="nav-logo" href="/">ULTIMA</a>
 
-		<div class="col-3">
-			<button title="Navigation menu" class="navbar-toggler d-md-none float-end" @onclick="ToggleNavMenu">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		</div>
+        <ul class="nav-links">
+            <li><a href="#hero" class="@(currentSection == "hero" ? "active" : "")">Home</a></li>
+            <li><a href="#about" class="@(currentSection == "about" ? "active" : "")">About</a></li>
+            <li><a href="#shop" class="@(currentSection == "shop" ? "active" : "")">Shop</a></li>
+        </ul>
 
-	</div>
-</div>
+        <a href="https://open.spotify.com/artist/16covOFVavN0LYXTOcu86z"
+           target="_blank"
+           class="nav-cta">Listen Now</a>
 
+        <button class="hamburger @(isOpen ? "is-open" : "")"
+                @onclick="ToggleMenu"
+                aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+
+    <div class="mobile-drawer @(isOpen ? "is-open" : "")">
+        <ul>
+            <li><a href="#hero"  @onclick="CloseMenu">Home</a></li>
+            <li><a href="#about" @onclick="CloseMenu">About</a></li>
+            <li><a href="#shop"  @onclick="CloseMenu">Shop</a></li>
+            <li><a href="https://open.spotify.com/artist/16covOFVavN0LYXTOcu86z"
+                   target="_blank" @onclick="CloseMenu">Listen Now</a></li>
+        </ul>
+    </div>
+
+    @if (isOpen)
+    {
+        <div class="nav-backdrop" @onclick="CloseMenu"></div>
+    }
+</nav>
 
 @code {
-	private bool collapseNavMenu = false;
+    private bool isOpen = false;
+    private string currentSection = "hero";
 
-	private string? NavMenuCssClass => collapseNavMenu ? "d-md-none position-absolute start-50 translate-middle-x" : "d-none d-md-block";
-
-	private void ToggleNavMenu()
-	{
-			collapseNavMenu = !collapseNavMenu;
-	}
+    private void ToggleMenu() => isOpen = !isOpen;
+    private void CloseMenu()  => isOpen = false;
 }

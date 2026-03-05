@@ -1,14 +1,24 @@
 ﻿@inherits LayoutComponentBase
 @using BlazorUltimaDjent.Components
+@inject IJSRuntime JS
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-    <main class="text-white">
+    <NavMenu />
+    <main>
         <article class="content">
             @Body
         </article>
     </main>
+    <Footer />
 </div>
-<Footer/>
+
+@code {
+    // This fires every time a page renders — including after navigation
+    // It's like overriding OnAppeared() in a mobile framework
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // Re-run the JS observer every render so new .reveal
+        // elements on each page get picked up
+        await JS.InvokeVoidAsync("initReveal");
+    }
+}

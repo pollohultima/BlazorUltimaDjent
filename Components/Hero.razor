@@ -1,5 +1,46 @@
-﻿<img src="/images/ULTIMA2025-2.jpg" class="img-fluid my-5" alt="Ultima Band Picture">
+﻿<section id="hero" class="hero-section">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
 
-@code {
+    <div class="hero-content">
+        <div class="hero-label">Djent · Prog Metal · Italy</div>
+        <h1 class="hero-title">
+            <span class="glitch">ULTIMA</span><br />
+            DJENT.
+        </h1>
+        <p class="hero-sub">
+            Heavy riffs meet videogame aesthetics. Djenty grooves,
+            massive breakdowns, and synth chaos from Northern Italy.
+            New album <strong>"Bloom The Ego"</strong> — out now on all platforms.
+        </p>
+        <div class="hero-actions">
+            <a href="#shop" class="btn-primary">Get Merch</a>
+            <a href="#about" class="btn-outline">Our Story</a>
+        </div>
+    </div>
 
-}
+    <div class="hero-image-wrap">
+        <div class="hero-image-brackets">
+            <div class="bracket tl"></div>
+            <div class="bracket tr"></div>
+            <div class="bracket bl"></div>
+            <div class="bracket br"></div>
+        </div>
+        <img src="/images/ULTIMA2025.jpg" alt="Ultima Band" class="hero-img" />
+        <div class="hero-image-overlay"></div>
+    </div>
+
+    <div class="hero-ticker">
+        <div class="ticker-track">
+            @foreach (var _ in Enumerable.Range(0, 2))
+            {
+                <span class="ticker-item">Bloom The Ego</span><span class="ticker-sep">✦</span>
+                <span class="ticker-item">I Won't Hide</span><span class="ticker-sep">✦</span>
+                <span class="ticker-item">Four Mornings</span><span class="ticker-sep">✦</span>
+                <span class="ticker-item">Inadequate</span><span class="ticker-sep">✦</span>
+                <span class="ticker-item">Malasomni</span><span class="ticker-sep">✦</span>
+                <span class="ticker-item">Iconoclasm</span><span class="ticker-sep">✦</span>
+            }
+        </div>
+    </div>
+</section>

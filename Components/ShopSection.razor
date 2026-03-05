@@ -1,22 +1,16 @@
-﻿@page "/shop"
-@using BlazorUltimaDjent.Components
 @using BlazorUltimaDjent.Models
 @using BlazorUltimaDjent.Services
 @inject ProductService ProductService
+@inject IJSRuntime JS
 
-<PageTitle>Shop — Ultima</PageTitle>
-
-<section class="shop-section">
+<section id="shop" class="shop-section">
     <div class="shop-header">
         <div class="section-label reveal">Merch</div>
-        <h1 class="section-title reveal reveal-delay-1">LABEL AS AN<br />ULTIM8</h1>
+        <h2 class="section-title reveal reveal-delay-1">LABEL AS AN<br />ULTIM8</h2>
     </div>
-
     @if (Products == null)
     {
-        <div class="shop-loading">
-            <span class="loading-text">LOADING PRODUCTS...</span>
-        </div>
+        <div class="shop-loading"><span class="loading-text">LOADING PRODUCTS...</span></div>
     }
     else if (!Products.Any())
     {
@@ -41,9 +35,15 @@
         Products = await ProductService.GetProductsAsync();
     }
 
+    // Re-run initReveal AFTER products finish loading and Blazor re-renders
+    // This is like a callback after an async operation completes in C#
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JS.InvokeVoidAsync("initReveal");
+    }
+
     private void AddToCart(Product p)
     {
-        // TODO: wire up a CartService here later
         Console.WriteLine($"Added to cart: {p.Title}");
     }
 }

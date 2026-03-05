@@ -15,6 +15,41 @@
     <link href="BlazorUltimaDjent.styles.css" rel="stylesheet" />
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <script>
+        window.initReveal = function () {
+            // Scroll reveal observer
+            const revealObserver = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        revealObserver.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal:not(.visible)')
+                .forEach(el => revealObserver.observe(el));
+
+            // Active nav link on scroll
+            // Uses the same IntersectionObserver pattern — fires when a section
+            // is at least 40% visible, then highlights the matching nav link
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks  = document.querySelectorAll('.nav-links a');
+
+            const navObserver = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        navLinks.forEach(a => {
+                            a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+                        });
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            sections.forEach(s => navObserver.observe(s));
+        };
+    </script>
 </head>
 
 <body>

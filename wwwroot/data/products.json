@@ -1,22 +1,23 @@
 [
   {
-    "Title": "Card 1",
-    "Description": "Descrizione 1",
-    "ImageSource": "/images/ULTIMA2025-2.jpg",
-    "Price": 20.00,
-    "Sizes": {
-      "M": 5,
-      "L": 5
-    }
+    "Title": "Bloom The Ego — Tee",
+    "Description": "Premium black tee. Album art front print.",
+    "Price": 29.00,
+    "ImageSource": "/images/WhiteNewShirt.jpeg",
+    "Tag": "New"
   },
   {
-    "Title": "Card 2",
-    "Description": "Descrizione 2",
-    "ImageSource": "/images/ULTIMA2025-2.jpg",
+    "Title": "Ultima Logo Hoodie",
+    "Description": "Heavyweight hoodie. Embroidered logo.",
+    "Price": 55.00,
+    "ImageSource": "/images/WhiteNewShirt.jpeg",
+    "Tag": null
+  },
+  {
+    "Title": "Meritamun EP — Vinyl",
+    "Description": "Limited run. 180g pressing.",
     "Price": 22.00,
-    "Sizes": {
-      "M": 5,
-      "L": 5
-    }
+    "ImageSource": "/images/WhiteNewShirt.jpeg",
+    "Tag": "Sold Out"
   }
 ]

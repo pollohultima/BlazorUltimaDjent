@@ -1,69 +1,172 @@
-.navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: black;
+/* ── Container ── */
+.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(5,5,7,0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
 }
 
-.navbar {
-    padding-bottom: 2rem;
-    padding-top: 2rem;
-}
-
-
-
-
-.navbar-brand {
+.nav-inner {
     display: flex;
-    align-content: center;
-    justify-content: start;
-}
-
-.bi {
-    display: inline-block;
-    position: relative;
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-right: 0.75rem;
-    top: -1px;
-    background-size: cover;
-}
-
-.nav-item {
-    font-size: 0.9rem;
-}
-
-    .nav-item ::deep a {
-        color: #d7d7d7;
-        border-radius: 4px;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        line-height: 3rem;
-    }
-
-.nav-item ::deep a.active {
-    font-weight: bolder;
-    color: white;
-}
-
-    .nav-item ::deep a:hover {
-        font-weight: bolder;
-        color: white;
-    }
-
-.link-wrapper, .custom-flex-row{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.custom-pos{
-    top: 80px
+/* ── Logo ── */
+.nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+}
+.nav-logo::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 100%; height: 1px;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
 }
 
-@media (min-width: 768px) {
-    .collapse {
-        /* Never collapse the sidebar for wide screens */
-        display: block;
-    }
+/* ── Desktop links ── */
+.nav-links {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links ::deep a {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--grey);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+    padding-bottom: 4px;
+}
+.nav-links ::deep a::before {
+    content: '//';
+    margin-right: 0.4em;
+    color: var(--cyan);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+/* NOTE: ::deep is Blazor's way of piercing into child component styles.
+   It's like targeting a nested element in C# — the style crosses the
+   component boundary to hit the NavLink's rendered <a> tag. */
+.nav-links ::deep a:hover,
+.nav-links ::deep a.active {
+    color: var(--white);
+}
+.nav-links ::deep a:hover::before,
+.nav-links ::deep a.active::before {
+    opacity: 1;
+}
+
+/* ── CTA button ── */
+.nav-cta {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    padding: 0.55rem 1.4rem;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+    text-decoration: none;
+}
+.nav-cta:hover {
+    background: var(--cyan);
+    color: var(--black);
+    box-shadow: 0 0 20px var(--cyan-glow);
+}
+
+/* ── Hamburger ── */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.hamburger span {
+    display: block;
+    width: 100%; height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+}
+.hamburger.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ── Mobile drawer ── */
+.mobile-drawer {
+    display: none;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+    background: rgba(5,5,7,0.98);
+    border-bottom: 1px solid var(--border);
+}
+.mobile-drawer.is-open { max-height: 400px; }
+
+.mobile-drawer ul {
+    list-style: none;
+    padding: 0.5rem 0 1.5rem;
+}
+.mobile-drawer ::deep a,
+.mobile-drawer ul li a {
+    display: block;
+    padding: 0.85rem 2rem;
+    color: var(--grey);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s, background 0.2s;
+}
+.mobile-drawer ::deep a:hover,
+.mobile-drawer ul li a:hover,
+.mobile-drawer ::deep a.active {
+    color: var(--cyan);
+    background: rgba(0,240,255,0.04);
+}
+
+/* ── Backdrop ── */
+.nav-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: rgba(0,0,0,0.5);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .nav-inner { padding: 1rem 1.5rem; }
+    .hamburger  { display: flex; }
+    .nav-links,
+    .nav-cta    { display: none; }
+    .mobile-drawer { display: block; }
 }
